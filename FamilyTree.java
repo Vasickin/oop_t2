@@ -1,24 +1,25 @@
-
-
-
-
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * создание класса amilyTree
+ * создание класса FamilyTree
  */
-public class FamilyTree {
+public class FamilyTree implements Serializable {
 
     private List<Person> people;
-                
-                    public FamilyTree(){
-                        people = new ArrayList<>();
-                }
-            
-                public void addPerson(Person person) {
-                    people.add(person);
+
+    public FamilyTree() {
+        people = new ArrayList<>();
+    }
+
+    /**
+     * метод добавления родственника в семейное дерево с одним
+     * 
+     * @param person
+     */
+    public void addPerson(Person person) {
+        people.add(person);
     }
 
     public List<Person> getChildren(Person perent) {
