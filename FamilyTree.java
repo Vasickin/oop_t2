@@ -6,6 +6,7 @@ import java.util.List;
  * создание класса FamilyTree
  */
 public class FamilyTree implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private List<Person> people;
 
@@ -34,4 +35,15 @@ public class FamilyTree implements Serializable {
         }
         return null;
     }
+
+    @Override
+public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Семейное дерево:\n");
+    for (Person person : people) {
+        sb.append(person.toString()).append("\n");
+    }
+    return sb.toString();
+}
+
 }
