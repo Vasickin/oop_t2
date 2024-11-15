@@ -1,3 +1,5 @@
+
+import java.io.IOException;
 import java.util.List;
 
 public class Main {
@@ -23,7 +25,6 @@ public class Main {
         Olga.setMother(Sofija);
         Anrej.setMother(Sofija);
 
-
         /**
          * добавления детей
          */
@@ -42,6 +43,11 @@ public class Main {
         familyTree.addPerson(Marina);
         familyTree.addPerson(Anrej);
 
+        /**
+         * сщздание экземпляра FileOperation
+         */
+        FileOperations fileOperations = new FileOperations();
+
         System.out.println();
         System.out.println(Marina);
         System.out.println(Olga);
@@ -56,11 +62,32 @@ public class Main {
         }
 
         System.out.println();
-        System.out.println();
 
         List<Person> OlgaChildren = familyTree.getChildren(Olga);
         for (Person child : OlgaChildren) {
             System.out.println(" Дети Ольги: " + child.getName());
+        }
+
+        System.out.println();
+
+        /**
+         * Запрузка семейного дерева в файл
+         */
+        try {
+            fileOperations.saveToFile("familyTree.JSON", familyTree);
+        } catch (IOException e) {
+            System.out.println("Ошибка при сохранении данных: " + e.getMessage());
+        }
+
+        /**
+         * Выгрузка семейного дерева из файла
+         */
+        try {
+            FamilyTree loadedTree = (FamilyTree) fileOperations.loadFromFile("familyTree.JSON");
+            System.out.println("Загруженное семейное дерево");
+            System.out.println(loadedTree);
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Ошибка при загрузке данных: " + e.getMessage());
         }
 
         System.out.println();
